@@ -1,12 +1,74 @@
-<!DOCTYPE html PUBLIC>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+"http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
 <html>
  <head> 
- 
+ <script>
+     const path = require("path");
+
+module.exports = {
+    // bundling mode
+    mode: "production",
+    // entry files
+    entry: "./src/index.ts",
+    // output bundles (location)
+    output: {
+        path: path.resolve( __dirname, "dist" ),
+        filename: "html5-qrcode.min.js",
+        library: "__Html5QrcodeLibrary__",
+    },
+    // file resolutions
+    resolve: {
+        extensions: [ ".ts", ".js" ],
+    },
+    target: "web",
+    module: {
+        rules: [
+            {
+                test: /\.tsx?/,
+                use: "ts-loader",
+                exclude: /node_modules/,
+            },
+        ]
+    },
+    optimization: {
+        minimize: true,
+        usedExports: true
+    }
+};
+
+
+/** Append the libary components to globals for backwards compatibility. */
+if (window) {
+    if (!Html5QrcodeScanner) {
+        var Html5QrcodeScanner = window.__Html5QrcodeLibrary__.Html5QrcodeScanner;
+    }
+    if (!Html5Qrcode) {
+        var Html5Qrcode = window.__Html5QrcodeLibrary__.Html5Qrcode;
+    }
+    if (!Html5QrcodeSupportedFormats) {
+        var Html5QrcodeSupportedFormats = window.__Html5QrcodeLibrary__.Html5QrcodeSupportedFormats
+    }
+    if (!Html5QrcodeScannerState) {
+        var Html5QrcodeScannerState = window.__Html5QrcodeLibrary__.Html5QrcodeScannerState;
+    }
+    if (!Html5QrcodeScanType) {
+        var Html5QrcodeScanType = window.__Html5QrcodeLibrary__.Html5QrcodeScanType;
+    }
+}
+
+ </script>
   <title>Payment - Kredivo</title> 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
+<meta name=viewport content="width=device-width, height=device-height, initial-scale=1">
+
+<script>
+ if (CSS.supports('-webkit-touch-callout', 'none')) // check for iOS safari
+  document.querySelector('meta[name=viewport]').content += ", user-scalable=no"
+</script>
   <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"> 
   <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> 
   <!--STYLES--> 
